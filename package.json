@@ -1,7 +1,12 @@
 {
   "name": "vue-cli-plugin-findsoft-basic",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "哲寻科技web组的前端基础框架",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/phpjavac/vue-cli-plugin-findsoft-basic.git"
+    },
+    "homepage": "https://github.com/phpjavac/vue-cli-plugin-findsoft-basic"
 }
