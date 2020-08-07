@@ -23,9 +23,9 @@
 ```
 ├── public                                 # 放置 index.html，以及可以直接在index.html里引用的文件
 │   ├── index.html                         # 入口html
-│   ├── static				   # 不被webpack打包的静态资源，比如下载的doc等
-│         ├──logo			   # 项目可配置的图片 图标等资源，方便后续部署替换
-│         ├──css			   # 不被打包的css文件 一般放重置浏览器默认css
+│   ├── static				   			   # 不被webpack打包的静态资源，比如下载的doc等
+│         ├──logo			   			   # 项目可配置的图片 图标等资源，方便后续部署替换
+│         ├──css			   			   # 不被打包的css文件 一般放重置浏览器默认css
 ├── src                                    # 源代码
 │   ├── assets                             # 静态资源文件，如图片和字体
 │       ├── images                         # 图片

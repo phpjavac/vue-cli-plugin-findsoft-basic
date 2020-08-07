@@ -1,6 +1,5 @@
 module.exports = (api, options) => {
     api.render('./template')
-    console.log(options.serverPath)
     api.extendPackage({
         scripts: {
             dev: 'vue-cli-service getTypes && vue-cli-service serve',
