@@ -1,6 +1,11 @@
-module.exports = api => {
+module.exports = (api, options) => {
     api.render('./template')
+    console.log(options.serverPath)
     api.extendPackage({
+        scripts: {
+            dev: 'vue-cli-service getTypes && vue-cli-service serve',
+            getTypes: 'vue-cli-service getTypes',
+        },
         dependencies: {
             "lodash": "^4.17.19",
             "axios": "^0.19.2",
@@ -17,17 +22,42 @@ module.exports = api => {
             "vue-cli-plugin-swagger-to-types": "^1.1.5",
         }
     })
-    // api.afterInvoke(() => {
-    //     const { EOL } = require('os')
-    //     const fs = require('fs')
-    //     const contentMain = fs.readFileSync(api.resolve(api.entryFile), { encoding: 'utf-8' })
-    //     const lines = contentMain.split(/\r?\n/g)
-    
-    //     const renderIndex = lines.findIndex(line => line.match(/render/))
-    //     lines[renderIndex] += `${EOL}  router,`
-    
-    //     fs.writeFileSync(api.entryFile, lines.join(EOL), { encoding: 'utf-8' })
-    //   })
+    // 基础 vue.config.js 参数设置
+    api.extendPackage({
+        vue: {
+            lintOnSave: false,
+            // baseUrl Deprecated since Vue CLI 3.3, 使用 publicPath 替代
+            publicPath: './',
+            devServer: {
+                proxy: {
+                  '/': {
+                    target: options.serverPath,
+                    changeOrigin: true,
+                    ws: false,
+                  },
+                },
+              },
+            pluginOptions: {
+                toTypes: {
+                    host: options.SwaageApiPath,
+                    TypesPath: './src/types/api.d.ts',
+                },
+                ftp: {
+                    host: '192.168.1.147',
+                    remoteFtpPath: 'DISK-D/findsoft_test/tomcat8/webapps/eg/',
+                },
+            },
+            css: {
+                loaderOptions: {
+                    less: {
+                        lessOptions: {
+                            javascriptEnabled: true,
+                        },
+                    },
+                },
+            },
+        },
+    })
 }
 
 
