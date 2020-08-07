@@ -1,0 +1,7 @@
+{
+  "name": "vue-cli-plugin-findsoft-basic",
+  "version": "0.0.1",
+  "description": "哲寻科技web组的前端基础框架",
+  "main": "index.js",
+  "license": "MIT"
+}
