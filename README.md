@@ -38,7 +38,7 @@
 │   ├── routers                            # 路由，如果路由配置很简单，则可以使用一个文件，如果复杂，则必须放到文件夹下面分模块管理
 │   ├── store                              # vuex
 │   ├── styles                             # 公共的样式文件，这里不写组件的样式文件，因为组件的样式文件都写到对应的.vue文件里
-│       ├── common-resources.scss          # 负责统一引用sass的公共变量和mixin
+│       ├── common-resources.styl          # 负责统一引用stylus的公共变量和mixin
 │   ├── utils                              # 放置和项目息息相关的基础代码，如request.js
 │   ├── views                              # 视图层，页面
 │   ├── App.vue                            # vue入口组件
