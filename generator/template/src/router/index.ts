@@ -36,23 +36,17 @@ const routes: Array<RouteConfig> = [
         meta: meta(2, true),
         component: () => import(/* webpackChunkName: "teacher/userlist" */ '../views/Teacher/userManage/userList.vue'),
       },
-      // {
-      //   path: '/Teacher/datacenter',
-      //   name: 'TeacherDataCenter',
-      //   meta: meta(2, true),
-      //   component: () => import(/* webpackChunkName: "public/datacenter" */ '../components/Public/DataCenter/index.vue'),
-      // },
-      {
-        path: '/Teacher/datacenter',
-        name: 'TeacherDataCenter',
-        meta: meta(2, true),
-        component: () => import(/* webpackChunkName: "public/datacenter" */ '../views/Public/DataCenter/index.vue'),
-      },
       {
         path: '/Teacher/classlist',
         name: 'teacher/classlist',
         meta: meta(1, true),
         component: () => import(/* webpackChunkName: "teacher/classlist" */ '../views/Teacher/classManage/classList.vue'),
+      },
+      {
+        path: '/Teacher/userInfo',
+        name: 'TeacherUserInfo',
+        meta: meta(0, true),
+        component: () => import(/* webpackChunkName: "teacher/userInfo" */ '../views/Public/UserInfo.vue'),
       },
     ],
   },
@@ -60,12 +54,7 @@ const routes: Array<RouteConfig> = [
     path: '/Student',
     component: () => import('../views/Student/index.vue'),
     children: [
-      {
-        path: '/Student/datacenter',
-        name: 'StudentDataCenter',
-        meta: meta(2, true),
-        component: () => import(/* webpackChunkName: "public/datacenter" */ '../views/Public/DataCenter/index.vue'),
-      },
+
     ],
   },
 ];

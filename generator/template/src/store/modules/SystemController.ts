@@ -25,6 +25,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios.get('./softConfig/get').then((res) => {
         const { data } = res;
+        console.log(data);
         commit('pulSoftConfig', data);
         resolve(data);
       }).catch((err) => {

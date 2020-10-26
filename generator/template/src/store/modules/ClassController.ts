@@ -1,5 +1,6 @@
 import http from '@/axios/fetch';
 import { definitions } from '@/types/api.d';
+import { message } from 'ant-design-vue-findsoft';
 import { Commit } from 'vuex';
 
 const axios = http.http;
@@ -9,19 +10,12 @@ const state = {
 };
 // MergeClassRequest
 const mutations = {
+  // 请求到班级数据后的mutation
   pulClassInfo(
     store: { classInfo: definitions['Page«Class»'] },
     classInfo: definitions['Page«Class»'],
   ) {
     store.classInfo = classInfo;
-  },
-  updatePulClassInfo(
-    store: { classInfo: definitions['Page«Class»'] },
-    newClassInfo: definitions['Class'],
-  ) {
-    if (store.classInfo.list) {
-      store.classInfo.list.unshift(newClassInfo);
-    }
   },
 };
 const getters = {
@@ -32,6 +26,7 @@ const getters = {
 const actions = {
   // 新建 更新班级信息
   updateClassInfo(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     { commit }: { commit: Commit },
     MergeClassRequest: definitions['MergeClassRequest'],
   ) {
@@ -39,17 +34,16 @@ const actions = {
       axios
         .post('./api/class/createOrUpdateClass', MergeClassRequest)
         .then((res) => {
-          console.log(res);
           const { data } = res.data;
-          commit('updatePulClassInfo', data);
           resolve(data);
         })
         .catch((err) => {
+          message.error('err');
           reject(err);
         });
     });
   },
-  // 获取班级信息
+  // 获取 查询 班级信息
   getClassInfo(
     { commit }: { commit: Commit },
     QueryClassRequest: definitions['QueryClassRequest'],
@@ -58,7 +52,6 @@ const actions = {
       axios
         .post('./api/class/queryClass', QueryClassRequest)
         .then((res) => {
-          console.log(res, 'getClassInfo');
           const { data } = res.data;
           commit('pulClassInfo', data);
           resolve(data);
@@ -67,6 +60,18 @@ const actions = {
           console.log(err);
           reject(err);
         });
+    });
+  },
+  // 删除班级
+  delCls(_: unknown, BatchDeletingRequest: definitions['BatchDeletingRequest']) {
+    return new Promise((resolve, reject) => {
+      axios.post('./api/userManage/delClass', BatchDeletingRequest).then((res) => {
+        message.success('删除班级成功');
+        resolve(res.data.data);
+      }).catch((err) => {
+        message.info(err);
+        reject(err);
+      });
     });
   },
 };

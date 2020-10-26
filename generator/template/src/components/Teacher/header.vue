@@ -1,14 +1,15 @@
 <template lang="pug">
 .the-header
-  .logo-or-name
+  .logo-or-name(@click="back")
     img.logo(src="static/logo/logoNav.png")
     .name {{ softConfig.softName }}
-  .navigation-bar
+  .navigation-bar(v-if="!user.student")
     .items(
       v-for="(item, index) in navList",
       :class="{ active: index === active }",
       @click="changePath(item.path)"
-    ) {{ item.name }}
+    ) {{ item .name }}
+  .navigation-bar(v-else)
   .user-profile(ref="userProfile")
     a-badge
       a-icon(type="bell", :style="{ fontSize: '24px', cursor: 'pointer' }")
@@ -18,12 +19,12 @@
     )
       template(slot="content")
         .menu
-          .menu-item
+          .menu-item(@click="changePath('/Teacher/userInfo')")
             a-icon(type="user", :style="{ fontSize: '16px' }")
             span 个人中心
-          .menu-item
-            a-icon(type="interaction", :style="{ fontSize: '16px' }")
-            span 切换窗口
+          //- .menu-item(v-if="!user.student",@click="changePath('/Student')")
+          //-   a-icon(type="interaction", :style="{ fontSize: '16px' }")
+          //-   span 切换窗口
           .menu-item(@click="outLogin")
             a-icon(type="import", :style="{ fontSize: '16px' }")
             span 退出账号
@@ -59,11 +60,11 @@ export default Vue.extend({
         },
         {
           name: '实验管理',
-          path: '/Teacher/classlist',
+          path: '/Teacher/distributecase',
         },
         {
           name: '报告管理',
-          path: '/Teacher/classlist',
+          path: '/Teacher/reportmanage',
         },
         {
           name: '资料中心',
@@ -71,7 +72,7 @@ export default Vue.extend({
         },
         {
           name: '自定义',
-          path: '/Teacher/classlist',
+          path: '/Teacher/customcase',
         },
       ],
     };
@@ -83,6 +84,13 @@ export default Vue.extend({
     },
   },
   methods: {
+    back() {
+      if (this.user.student) {
+        this.$router.push('/Student');
+      } else {
+        this.$router.push('/Teacher/userlist');
+      }
+    },
     changePath(path: string) {
       if (this.$route.path === path) {
         return;
@@ -107,6 +115,7 @@ export default Vue.extend({
   padding 0 90px 0 110px
   .logo-or-name
     display flex
+    cursor pointer
     .logo
       width 24px
       height 18px

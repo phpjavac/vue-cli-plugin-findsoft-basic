@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { definitions } from '@/types/api.d';
-import UserController from './axios/UserController';
-import SystemController from './axios/SystemController';
-import ClassController from './axios/ClassController';
+import UserController from './modules/UserController';
+import SystemController from './modules/SystemController';
+import ClassController from './modules/ClassController';
+import ClassMemberController from './modules/ClassMemberController';
 
 Vue.use(Vuex);
 
@@ -26,5 +27,6 @@ export default new Vuex.Store({
     UserController,
     SystemController,
     ClassController,
+    ClassMemberController
   },
 });
