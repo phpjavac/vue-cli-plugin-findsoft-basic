@@ -58,7 +58,9 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapActions, mapGetters } from 'vuex';
-import { FormModel, Input, message, Button } from 'ant-design-vue-findsoft';
+import {
+  FormModel, Input, message, Button,
+} from 'ant-design-vue-findsoft';
 
 Vue.use(Input);
 Vue.use(FormModel);

@@ -87,7 +87,7 @@ const getters = {
 const actions = {
 
   changeUserInfo(_: unknown, ChangeUserInfo: definitions['ChangeUserInfoRequest']) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       axios.post('./api/user/changeUserInfo', ChangeUserInfo).then(() => {
         message.success('编辑用户成功');
         resolve();

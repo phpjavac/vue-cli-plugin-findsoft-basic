@@ -27,6 +27,6 @@ export default new Vuex.Store({
     UserController,
     SystemController,
     ClassController,
-    ClassMemberController
+    ClassMemberController,
   },
 });
