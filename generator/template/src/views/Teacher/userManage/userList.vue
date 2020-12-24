@@ -368,7 +368,7 @@ export default Vue.extend({
         this.queryTeacherLoading = true;
 
         const { totalRecords } = await this.queryStudentList(
-          this.queryStudentData,
+          this.queryStudentData
         );
         this.queryTeacherLoading = false;
 
@@ -406,7 +406,7 @@ export default Vue.extend({
                   this.queryTeacherLoading = true;
 
                   const { totalRecords } = await this.queryStudentList(
-                    this.queryStudentData,
+                    this.queryStudentData
                   );
                   this.queryTeacherLoading = false;
                   this.pagination.total = totalRecords;
@@ -448,7 +448,7 @@ export default Vue.extend({
               this.addUser(this.addTeacherForm)
                 .then(async () => {
                   const { totalRecords } = await this.queryUserList(
-                    this.queryTeacher,
+                    this.queryTeacher
                   );
                   this.pagination.total = totalRecords;
                   this.addTeacherCancel();
@@ -487,7 +487,7 @@ export default Vue.extend({
               .then(async () => {
                 this.pageChange(this.pagination);
                 const { totalRecords } = await this.queryUserList(
-                  this.queryTeacher,
+                  this.queryTeacher
                 );
                 this.pagination.total = totalRecords;
                 resolve();
@@ -517,7 +517,7 @@ export default Vue.extend({
             this.delStuUser({ ids: JSON.stringify([val.userId]) })
               .then(async () => {
                 const { totalRecords } = await this.queryStudentList(
-                  this.queryStudentData,
+                  this.queryStudentData
                 );
                 this.pagination.total = totalRecords;
                 this.pageChange(this.pagination);
@@ -555,7 +555,7 @@ export default Vue.extend({
               this.delTeaUser({ ids: JSON.stringify(this.selectedRowKeys) })
                 .then(async () => {
                   const { totalRecords } = await this.queryUserList(
-                    this.queryTeacher,
+                    this.queryTeacher
                   );
                   this.pagination.total = totalRecords;
                   this.selectedRowKeys = [];
@@ -571,7 +571,7 @@ export default Vue.extend({
               this.delStuUser({ ids: JSON.stringify(this.selectedRowKeys) })
                 .then(async () => {
                   const { totalRecords } = await this.queryStudentList(
-                    this.queryStudentData,
+                    this.queryStudentData
                   );
                   this.pagination.total = totalRecords;
                   this.selectedRowKeys = [];
@@ -640,15 +640,16 @@ export default Vue.extend({
       Modal.confirm({
         title: '系统提示',
         content: `你确定要把该用户(${row.name})的密码重置为123456吗?`,
-        onOk: () => new Promise((resolve, reject) => {
-          this.resetPassword({ code: row.userId || row.code })
-            .then(() => {
-              resolve();
-            })
-            .catch(() => {
-              reject();
-            });
-        }),
+        onOk: () =>
+          new Promise((resolve, reject) => {
+            this.resetPassword({ code: row.userId || row.code })
+              .then(() => {
+                resolve();
+              })
+              .catch(() => {
+                reject();
+              });
+          }),
         onCancel() {
           console.log('Cancel');
         },
@@ -656,7 +657,8 @@ export default Vue.extend({
     },
   },
   components: {
-    TheTitleAndSearch: () => import('@/components/Teacher/Ui/TitleAndSearch.vue'),
+    TheTitleAndSearch: () =>
+      import('@/components/Teacher/Ui/TitleAndSearch.vue'),
     SearchBar: () => import('@/components/Teacher/Ui/SearchBar.vue'),
     aTable: Table,
     aIcon: MyIcon,
@@ -677,7 +679,7 @@ export default Vue.extend({
       this.queryTeacherLoading = true;
       this.queryStudentData.teacherId = this.code;
       const { totalRecords } = await this.queryStudentList(
-        this.queryStudentData,
+        this.queryStudentData
       );
       this.queryTeacherLoading = false;
       this.pagination.total = totalRecords;
